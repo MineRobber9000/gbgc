@@ -69,7 +69,7 @@ Start::
 	jr .skip
 .good	ld a,$01
 .skip	ld [_SCRN0],a
-	ld a,LCDCF_ON|LCDCF_BG8000
+	ld a,LCDCF_ON|LCDCF_BG8000|LCDCF_BGON
 	ld [rLCDC],a
 .loop
 	halt
