@@ -1,5 +1,5 @@
 INCLUDE "gbhw.inc"
-SECTION "Serial stuffs",ROM0[$01B0]
+SECTION "Serial stuffs",ROM0[$0250]
 SendByte::
 	ld [rSB],a
 	ld a,$81 ; (0bSXXXXXXM (S=Start transfer, M=master)
