@@ -61,6 +61,16 @@ Start::
 	call FillMem
 	pop af
 	ld [wGBC],a
+	call LoadFullFont
+	ld a,$00
+	rst $00
+	jr nz,.good
+	ld a,$58
+	jr .skip
+.good	ld a,$01
+.skip	ld [_SCRN0],a
+	ld a,LCDCF_ON|LCDCF_BG8000
+	ld [rLCDC],a
 .loop
 	halt
 	nop
