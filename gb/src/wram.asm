@@ -1,0 +1,3 @@
+SECTION "WRAM Data",WRAM0[$c000]
+wGBC::
+	ds 1

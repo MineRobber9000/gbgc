@@ -1,0 +1,5 @@
+gb/game.map
+gb/game.gb
+gb/game.sym
+*.o
+*.pyc
