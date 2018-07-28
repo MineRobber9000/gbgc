@@ -6,7 +6,7 @@ SendByte::
 	ld [rSC],a
 .loop	ld a,[rSC]
 	bit 7,a
-	jr z,.loop
+	jr c,.loop
 	ld a,[rSB]
 	cp $ff
 	ret ; if z flag is set, $FF was recieved.
