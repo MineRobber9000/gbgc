@@ -61,20 +61,36 @@ Start::
 	call FillMem
 	pop af
 	ld [wGBC],a
-	call LoadFullFont
-	ld a,$00
-	rst $00
-	jr nz,.good
-	ld a,$58
-	jr .skip
-.good	ld a,$01
-.skip	ld [_SCRN0],a
 	ld a,LCDCF_ON|LCDCF_BG8000|LCDCF_BGON
 	ld [rLCDC],a
+	xor a
+	rst $00
+	jr z,.loop
+	ld hl,MainProgram
+	ld a,$01
+	rst $00
+.sendloop
+	ld a,[hli]
+	push af
+	rst $00
+	pop af
+	and a
+	jr nz,.sendloop
+	ld hl,$c000
+.recvloop
+	xor a
+	rst $00
+	jp z,$c000
+	ld [hli],a
+	jr .recvloop
 .loop
 	halt
 	nop
 	jr .loop
+
+MainProgram::
+	jp $0150
+	nop
 
 VBlank::
 	reti
